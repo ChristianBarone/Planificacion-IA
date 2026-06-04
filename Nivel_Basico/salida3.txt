@@ -1,0 +1,51 @@
+
+ff: parsing domain file
+domain 'VIAJE-BASICO' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO3-BASICO-INSTANCIA-GRANDE' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF0](TOTAL-COST)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:    8 into depth [1]
+                                   7            [1]
+                                   6            [1][2]
+                                   5            [1]
+                                   4            [1]
+                                   3            [1][2]
+                                   2            [1][2]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+step    0: START-TRIP BILBAO
+        1: CHECK-IN HBILBAO BILBAO
+        2: FLY BILBAO CORUNA
+        3: CHECK-IN HCORUNA CORUNA
+        4: FLY CORUNA VIGO
+        5: CHECK-IN HVIGO VIGO
+        6: FLY VIGO OPORTO
+        7: CHECK-IN HOPORTO OPORTO
+        8: FLY OPORTO LISBOA
+        9: CHECK-IN HLISBOA LISBOA
+       10: FINISH-TRIP LISBOA
+plan cost: 9.000000
+
+time spent:    0.15 seconds instantiating 32 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 34 facts and 32 actions
+               0.00 seconds creating final representation with 34 relevant facts, 2 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 14 states, to a max depth of 2
+               0.15 seconds total time
+

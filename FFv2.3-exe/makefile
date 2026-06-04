@@ -9,7 +9,7 @@ ADDONS	=
 
 CC      = gcc
 
-CFLAGS	= -O6 -ansi $(TYPE) $(ADDONS) -g
+CFLAGS  = -O6 -ansi -fcommon $(TYPE) $(ADDONS) -g
 # -g -pg
 
 LIBS    = -lm

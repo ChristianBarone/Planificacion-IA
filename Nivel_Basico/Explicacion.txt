@@ -1,0 +1,41 @@
+CASO 1 - caso1_basico_varias_rutas.pddl
+Objetivo:
+Comprobar el funcionamiento básico del dominio en una instancia pequeña con varias rutas posibles.
+
+Qué intenta probar:
+- Que el planificador puede elegir una ciudad inicial libremente.
+- Que el sistema genera un recorrido de al menos 3 ciudades.
+- Que en cada ciudad visitada se selecciona un hotel.
+- Que no se repiten ciudades.
+- Que, al existir varias conexiones, el dominio sigue siendo capaz de producir un plan válido.
+
+Resultado esperado:
+Un plan legal que visite al menos 3 ciudades, haga check-in en cada una y termine correctamente.
+
+-------------------------------------------
+CASO 2 - caso2_basico_ruta_forzada.pddl
+Objetivo:
+Comprobar que el dominio funciona cuando la conectividad entre ciudades es limitada y el camino está casi forzado.
+
+Qué intenta probar:
+- Que el planificador puede alcanzar el mínimo de 4 ciudades incluso con pocas conexiones.
+- Que el recorrido se construye siguiendo una cadena de vuelos.
+- Que no se necesitan ciclos ni repeticiones de ciudades para resolver el problema.
+- Que el dominio no depende de tener un grafo muy denso para funcionar.
+
+Resultado esperado:
+Un plan legal que recorra una secuencia de 4 ciudades conectadas, con un hotel en cada ciudad visitada.
+
+----------------------------------
+CASO 3 - caso3_basico_instancia_grande.pddl
+Objetivo:
+Comprobar el comportamiento del dominio en una instancia más grande, con más ciudades que el mínimo exigido.
+
+Qué intenta probar:
+- Que el dominio escala a un problema con 6 ciudades.
+- Que el planificador puede visitar al menos 5 ciudades sin necesidad de visitar todas.
+- Que el sistema sigue escogiendo hoteles y vuelos correctamente en una instancia más amplia.
+- Que con más alternativas de conexión el dominio continúa generando un plan coherente.
+
+Resultado esperado:
+Un plan legal que visite al menos 5 ciudades, seleccione hotel en cada una y termine el viaje correctamente.
