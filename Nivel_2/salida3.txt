@@ -1,0 +1,71 @@
+
+ff: parsing domain file
+domain 'VIAJE-EXTENSION2' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO3-EXT2-ESTANCIA-EXACTA-OPTIMIZADA' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF8](TOTAL-INTEREST)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   27 into depth [1]
+                                  19            [1]
+                                  18            [1]
+                                  17            [1]
+                                  16            [1]
+                                  14            [1]
+                                  13            [1]
+                                  12            [1][2][3]
+                                  11            [1]
+                                  10            [1]
+                                   9            [1]
+                                   7            [1]
+                                   6            [1]
+                                   5            [1][2]
+                                   4            [1]
+                                   3            [1]
+                                   2            [1]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+step    0: START-TRIP PARIS
+        1: CHECK-IN HPARIS PARIS
+        2: SPEND-DAY PARIS
+        3: SPEND-DAY PARIS
+        4: FLY PARIS BARCELONA
+        5: CHECK-IN HBARCELONA BARCELONA
+        6: SPEND-DAY BARCELONA
+        7: SPEND-DAY BARCELONA
+        8: FLY BARCELONA ROMA
+        9: CHECK-IN HROMA ROMA
+       10: SPEND-DAY ROMA
+       11: SPEND-DAY ROMA
+       12: FLY ROMA BERLIN
+       13: CHECK-IN HBERLIN BERLIN
+       14: SPEND-DAY BERLIN
+       15: SPEND-DAY BERLIN
+       16: FLY BERLIN LISBOA
+       17: CHECK-IN HLISBOA LISBOA
+       18: SPEND-DAY LISBOA
+       19: SPEND-DAY LISBOA
+       20: FINISH-TRIP LISBOA
+plan cost: 5.000000
+
+time spent:    0.00 seconds instantiating 54 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 44 facts and 54 actions
+               0.00 seconds creating final representation with 44 relevant facts, 19 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.15 seconds searching, evaluating 24 states, to a max depth of 3
+               0.15 seconds total time
+

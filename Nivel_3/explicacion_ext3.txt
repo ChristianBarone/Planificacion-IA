@@ -1,0 +1,51 @@
+EXTENSION 3
+
+Que se ha añadido respecto a la extension 1:
+- hotel-price(h): precio del hotel asociado a cada ciudad.
+- flight-price(from,to): precio del vuelo entre dos ciudades conectadas.
+- total-price: coste total acumulado del plan.
+- min-price: precio minimo total permitido.
+- max-price: precio maximo total permitido.
+- metrica del problema: minimizar total-price.
+
+Logica utilizada:
+1. Se mantienen todas las restricciones temporales de la extension 1: minimo de ciudades, minimo y maximo de dias por ciudad y minimo de dias totales del viaje.
+2. start-trip no suma coste, porque el enunciado simplifica y deja fuera del problema el desplazamiento desde la ciudad de origen del cliente hasta la primera ciudad del recorrido.
+3. check-in suma al total el precio del hotel de la ciudad actual.
+4. fly suma al total el precio del vuelo utilizado entre las dos ciudades.
+5. spend-day no modifica el precio, porque en este modelo el hotel se cobra una sola vez por ciudad visitada y no por noche. Esto simplifica la representacion y es coherente con que en esta extension lo importante es distinguir precios de hoteles y vuelos.
+6. finish-trip solo puede ejecutarse si el coste total acumulado esta dentro del rango [min-price, max-price].
+7. Entre todos los planes que cumplen las restricciones, la metrica intenta minimizar total-price.
+
+Interpretacion del resultado:
+- Un plan valido no solo debe cumplir las restricciones de dias y ciudades, sino tambien caer dentro del rango de precio total.
+- Si hay varias soluciones posibles dentro del rango, el planificador tendera a elegir la mas barata.
+- Si el rango es demasiado bajo o demasiado estrecho, puede no haber solucion.
+
+---------------------------------
+CASO 1 - caso1_ext3_rango_amplio_barato.pddl
+Que busca:
+Comprobar que, con un rango de precio amplio y varias rutas posibles, el planificador escoge una solucion barata.
+Que se espera:
+Que el recorrido tienda a usar ciudades y conexiones de la zona barata del grafo, evitando Viena y Praga salvo que sean necesarias.
+Result: Las evita
+
+---------------------------------
+CASO 2 - caso2_ext3_rango_ajustado_resoluble.pddl
+Que busca:
+Comprobar que el dominio puede cumplir un rango de precio relativamente ajustado y aun asi encontrar solucion.
+Que se espera:
+Que el plan encontrado tenga un coste total dentro del intervalo [165,190], demostrando que el rango minimo/maximo no solo se define sino que realmente restringe la solucion.
+Result: Cuesta 176 exactamente
+
+---------------------------------
+CASO 3 - caso3_ext3_ruta_cara_necesaria.pddl
+Que busca:
+Comprobar que el planificador acepta usar vuelos mas caros cuando son necesarios para alcanzar el numero minimo de ciudades dentro de un rango coherente.
+Que se espera:
+Que el plan pueda incluir pasos por Viena o Praga si eso es necesario para llegar a 5 ciudades, manteniendo el coste total dentro del intervalo [210,320].
+Result: Elige Viena y Praga para llegar a 5 ciudades, coste total de 310
+
+./ff -o dominio_ext3.pddl -f caso1_ext3_rango_amplio_barato.pddl
+./ff -o dominio_ext3.pddl -f caso2_ext3_rango_ajustado_resoluble.pddl
+./ff -o dominio_ext3.pddl -f caso3_ext3_ruta_cara_necesaria.pddl

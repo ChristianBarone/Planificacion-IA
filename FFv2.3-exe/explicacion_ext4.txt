@@ -1,0 +1,74 @@
+EXTENSION 4
+
+Que se ha añadido respecto a las extensiones anteriores:
+- Se combinan la extension 2 y la extension 3 sobre la extension 1.
+- Cada ciudad tiene un valor de interes representado como un entero.
+- Cada hotel tiene un precio.
+- Cada vuelo tiene un precio.
+- Se acumulan dos fluentes diferentes:
+  - total-interest: suma de los intereses de las ciudades visitadas.
+  - total-price: precio total del recorrido.
+- Se mantiene el rango de precio total con min-price y max-price.
+- La metrica se define como una combinacion ponderada de total-price y total-interest.
+
+Logica utilizada:
+1. Se mantienen todas las restricciones temporales de la extension 1:
+   - numero minimo de ciudades visitadas,
+   - minimo y maximo de dias por ciudad,
+   - minimo numero de dias del recorrido.
+2. start-trip elige la ciudad inicial, la marca como visitada y suma su interes a total-interest.
+3. check-in realiza el alojamiento en la ciudad actual y suma el precio del hotel a total-price.
+4. spend-day incrementa los dias de estancia en la ciudad y los dias totales del viaje.
+5. fly solo permite ir a una ciudad no visitada, suma el precio del vuelo y añade el interes de la nueva ciudad.
+6. finish-trip solo puede ejecutarse si:
+   - se ha alcanzado el minimo de ciudades,
+   - se cumplen los minimos de dias,
+   - el precio total esta dentro del rango [min-price, max-price].
+
+Como se modela la optimizacion:
+- El interes y el precio tienen unidades muy diferentes.
+- Por eso no se minimiza solo una suma simple, sino una metrica ponderada.
+- Segun los pesos elegidos, el planificador favorecera mas las ciudades interesantes o mas las rutas baratas.
+
+Importante sobre los resultados:
+- No hay que esperar siempre la solucion globalmente optima.
+- El enunciado ya avisa de que el planificador usa heuristicas y no una busqueda exhaustiva.
+- Por tanto, lo importante es comprobar que al cambiar los pesos cambia la preferencia de la solucion.
+
+------------------------------------
+CASO 1 - caso1_ext4_prioriza_interes.pddl
+Que busca:
+Comprobar el efecto de dar mucho mas peso al interes que al precio.
+Metrica:
+(:metric minimize (+ (total-price) (* 40 (total-interest))))
+Interpretacion:
+El interes pesa mucho en la decision final.
+Resultado esperado:
+El plan deberia tender a visitar ciudades con interes 1 aunque eso implique pagar mas.
+
+---------------------------------------
+CASO 2 - caso2_ext4_prioriza_precio.pddl
+Que busca:
+Comprobar el efecto de dar mucho mas peso al precio total.
+Metrica:
+(:metric minimize (+ (* 5 (total-price)) (* 10 (total-interest))))
+Interpretacion:
+El precio pasa a dominar claramente la funcion objetivo.
+Resultado esperado:
+El plan deberia tender a escoger la parte barata del grafo, aunque el interes turistico sea peor.
+
+-------------------------------------
+CASO 3 - caso3_ext4_equilibrado.pddl
+Que busca:
+Comprobar un compromiso intermedio entre interes y precio.
+Metrica:
+(:metric minimize (+ (total-price) (* 15 (total-interest))))
+Interpretacion:
+Ninguno de los dos criterios domina por completo.
+Resultado esperado:
+El plan deberia tender a una solucion intermedia, ni la mas barata posible ni la mas interesante posible.
+
+Efecto de las ponderaciones:
+- Si el peso del interes sube, el planificador acepta pagar mas para visitar ciudades con menor valor de city-interest.
+- Si el peso del precio sube, el planificador evita rutas caras aunque pasen por ciudades mas atractivas.
+- Si los pesos estan mas equilibrados, suelen aparecer soluciones mixtas.

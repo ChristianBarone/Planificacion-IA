@@ -1,5 +1,5 @@
-(define (problem caso1-basico-varias-rutas)
-  (:domain viaje-basico)
+(define (problem caso1-ext1-total-minimo)
+  (:domain viaje-extension1)
 
   (:objects
     barcelona paris roma berlin - city
@@ -9,7 +9,16 @@
   (:init
     (= (visited-count) 0)
     (= (min-cities) 3)
+    (= (min-days-city) 1)
+    (= (max-days-city) 2)
+    (= (total-days) 0)
+    (= (min-total-days) 4)
     (= (total-cost) 0)
+
+    (= (days-in-city barcelona) 0)
+    (= (days-in-city paris) 0)
+    (= (days-in-city roma) 0)
+    (= (days-in-city berlin) 0)
 
     (hotel-in hbarcelona barcelona)
     (hotel-in hparis paris)

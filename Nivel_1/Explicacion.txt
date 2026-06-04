@@ -1,0 +1,54 @@
+EXTENSION 1
+
+Que se ha añadido al nivel basico:
+Se han añadido fluentes numericos para modelar la duracion del viaje y la estancia en cada ciudad.
+Los nuevos elementos del modelo son:
+- days-in-city(c): numero de dias acumulados en cada ciudad.
+- min-days-city: minimo de dias que hay que pasar en cada ciudad visitada.
+- max-days-city: maximo de dias permitidos en cada ciudad visitada.
+- total-days: numero total de dias del recorrido.
+- min-total-days: minimo numero de dias que debe durar todo el viaje.
+- total-cost: fluente auxiliar para definir una metrica y poder ejecutar Metric-FF correctamente.
+
+Logica utilizada:
+1. El viaje comienza con start-trip, que elige la ciudad inicial y la marca como visitada.
+2. En cada ciudad visitada debe hacerse check-in en un hotel.
+3. La accion spend-day representa permanecer un dia mas en la ciudad actual.
+4. spend-day solo puede aplicarse mientras no se haya alcanzado el maximo de dias por ciudad.
+5. Para salir de una ciudad con fly, antes hay que haber cumplido el minimo de dias en esa ciudad.
+6. finish-trip solo puede ejecutarse si:
+   - se han visitado al menos las ciudades minimas exigidas,
+   - en la ciudad final tambien se cumple el minimo de dias,
+   - el total del recorrido alcanza el minimo de dias requerido.
+
+Interpretacion del resultado:
+El numero de veces que aparece la accion spend-day sobre una ciudad indica cuantos dias se permanece en esa ciudad.
+Por tanto, el plan ya no solo dice que hotel y que vuelos se usan, sino tambien cuantos dias se pasa en cada destino.
+
+------------------------------
+CASO 1 - caso1_ext1_total_minimo.pddl
+Que busca:
+Comprobar que el sistema respeta simultaneamente el minimo de ciudades y el minimo de dias totales.
+Idea del caso:
+Con min-cities = 3, min-days-city = 1 y min-total-days = 4, no basta con visitar 3 ciudades un solo dia cada una.
+Resultado esperado:
+Debe existir solucion, pero el plan tiene que incluir al menos una accion spend-day adicional en alguna ciudad para llegar a 4 dias.
+
+-------------------------------
+CASO 2 - caso2_ext1_ruta_forzada_exacta.pddl
+Que busca:
+Comprobar que el modelo funciona cuando la conectividad es limitada y la estancia por ciudad esta totalmente fijada.
+Idea del caso:
+Como min-days-city = 2 y max-days-city = 2, en cada ciudad visitada hay que permanecer exactamente 2 dias.
+Resultado esperado:
+deberia existir solucion y el plan deberia mostrar exactamente dos acciones spend-day por ciudad visitada.
+Result: No da solucion porque el planificador no elige la ciudad que habíamos "designado" que empezaría nuestra ruta.
+
+--------------------------------
+CASO 3 - caso3_ext1_sin_solucion_por_maximos.pddl
+Que busca:
+Comprobar que el modelo detecta correctamente problemas sin solucion por incompatibilidad entre restricciones.
+Idea del caso:
+Se exige min-total-days = 5, pero solo hay 3 ciudades y max-days-city = 1.
+Resultado esperado:
+No debe existir solucion, porque como mucho se puede pasar 1 dia en cada una de las 3 ciudades, es decir, 3 dias en total.

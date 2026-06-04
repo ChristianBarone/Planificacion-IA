@@ -1,0 +1,62 @@
+
+ff: parsing domain file
+domain 'VIAJE-EXTENSION3' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO2-EXT3-RANGO-AJUSTADO-RESOLUBLE-V2' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF0](TOTAL-PRICE)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   13 into depth [1]
+                                   8            [1]
+                                   7            [1]
+                                   6            [1][2]
+                                   4            [1]
+                                   3            [1]
+                                   2            [1][2] --- pruning stopped --- [1][2]
+
+Enforced Hill-climbing not successful.
+Switching to A*epsilon now.
+
+Advancing to goal distance:   13
+                               8
+                               7
+                               6
+                               4
+                               3
+                               2
+                               1
+                               0
+
+ff: found legal plan as follows
+step    0: START-TRIP BERLIN
+        1: CHECK-IN H-BERLIN-BUDGET BERLIN
+        2: SPEND-DAY BERLIN
+        3: SPEND-DAY BERLIN
+        4: FLY BERLIN ROME
+        5: CHECK-IN H-ROME-BUDGET ROME
+        6: SPEND-DAY ROME
+        7: FLY ROME PRAGUE
+        8: CHECK-IN H-PRAGUE-BUDGET PRAGUE
+        9: SPEND-DAY PRAGUE
+       10: FINISH-TRIP PRAGUE
+plan cost: 176.000000
+
+time spent:    0.00 seconds instantiating 33 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 29 facts and 33 actions
+               0.00 seconds creating final representation with 29 relevant facts, 14 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 226 states, to a max depth of 2
+               0.00 seconds total time
+

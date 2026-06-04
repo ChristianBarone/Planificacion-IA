@@ -1,0 +1,53 @@
+
+ff: parsing domain file
+domain 'VIAJE-EXTENSION1' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO1-EXT1-TOTAL-MINIMO' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF4](TOTAL-COST)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   13 into depth [1]
+                                   9            [1]
+                                   8            [1]
+                                   7            [1]
+                                   6            [1]
+                                   5            [1]
+                                   4            [1][2]
+                                   3            [1]
+                                   2            [1]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+step    0: START-TRIP PARIS
+        1: CHECK-IN HPARIS PARIS
+        2: SPEND-DAY PARIS
+        3: FLY PARIS BARCELONA
+        4: CHECK-IN HBARCELONA BARCELONA
+        5: SPEND-DAY BARCELONA
+        6: SPEND-DAY BARCELONA
+        7: FLY BARCELONA ROMA
+        8: CHECK-IN HROMA ROMA
+        9: SPEND-DAY ROMA
+       10: FINISH-TRIP ROMA
+plan cost: 9.000000
+
+time spent:    0.15 seconds instantiating 26 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 24 facts and 26 actions
+               0.00 seconds creating final representation with 24 relevant facts, 11 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 13 states, to a max depth of 2
+               0.15 seconds total time
+

@@ -1,0 +1,47 @@
+EXTENSION 2
+
+Que se ha añadido respecto a la extension 1:
+- city-interest(c): valor entero asociado a cada ciudad.
+- total-interest: suma del interes de las ciudades visitadas.
+- metrica del problema: minimizar total-interest.
+
+Logica utilizada:
+1. La extension mantiene todas las restricciones de la extension 1: minimo de ciudades, minimo y maximo de dias por ciudad y minimo de dias totales del recorrido.
+2. Al iniciar el viaje con start-trip se suma al total el interes de la ciudad inicial.
+3. Cada vez que se visita una ciudad nueva con fly, se suma su interes a total-interest.
+4. Como no se pueden repetir ciudades, cada ciudad visitada aporta su interes una sola vez.
+5. La accion spend-day no modifica el interes total, porque el interes depende de que ciudades se visitan, no de cuantos dias se pasa en ellas.
+6. La metrica minimiza total-interest. Como en el enunciado 1 significa mayor interes turistico, minimizar ese valor equivale a maximizar el interes real de las ciudades elegidas.
+
+Interpretacion del resultado:
+- Un plan mejor sera el que visite ciudades con valores de interes mas bajos.
+- Si dos planes cumplen las mismas restricciones de dias y ciudades, deberia preferirse el que tenga menor suma de intereses.
+
+-----------------------------------------------
+CASO 1 - caso1_ext2_prefiere_ciudades_interes_alto.pddl
+Que busca:
+Comprobar que, cuando hay varias rutas posibles, el planificador prefiere ciudades con interes 1 frente a otras con interes 2 o 3.
+Que se espera:
+Que el plan tienda a escoger un recorrido formado sobre todo por Barcelona, Paris, Roma y Berlin, porque son las ciudades con menor valor de interes.
+Result: Cumple pero como selecciona Oporto de inicio no salen las 4.
+
+--------------------------------------------------
+CASO 2 - caso2_ext2_nodo_caro_obligatorio.pddl
+Que busca:
+Comprobar que la optimizacion del interes no rompe la factibilidad del problema y que, si una ciudad cara es necesaria para conectar suficientes ciudades, el plan la usa igualmente.
+Que se espera:
+Para llegar a 5 ciudades, el recorrido debe atravesar Berlin, que tiene interes 3. El plan deberia incluirla porque sin ella no se alcanza el numero minimo de ciudades.
+Result: No se que pensaba la IA, pero bueno incluye Berlin. 
+
+--------------------------------------------------
+CASO 3 - caso3_ext2_estancia_exacta_optimizada.pddl
+Que busca:
+Comprobar que la optimizacion del interes funciona tambien cuando la estancia por ciudad esta fijada exactamente en 2 dias.
+Que se espera:
+Como hay que visitar 5 ciudades y permanecer exactamente 2 dias en cada una, el plan deberia intentar quedarse con las cinco ciudades de interes 1 (Barcelona, Paris, Roma, Berlin, Lisboa) antes que usar Oporto, Viena o Praga.
+Result: Va de locos
+
+Ejecucion:
+./ff -o dominio_ext2.pddl -f caso1_ext2_prefiere_ciudades_interes_alto.pddl
+./ff -o dominio_ext2.pddl -f caso2_ext2_nodo_caro_obligatorio.pddl
+./ff -o dominio_ext2.pddl -f caso3_ext2_estancia_exacta_optimizada.pddl

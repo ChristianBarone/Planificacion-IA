@@ -1,0 +1,47 @@
+
+ff: parsing domain file
+domain 'VIAJE-EXTENSION1' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO2-EXT1-RUTA-FORZADA-EXACTA' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF4](TOTAL-COST)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   17 into depth [1]
+                                  15            [1]
+                                  14            [1]
+                                  13            [1]
+                                  12            [1]
+                                  11            [1]
+                                  10            [1]
+                                   9            [1]
+                                   8            [1] --- pruning stopped --- [1]
+
+Enforced Hill-climbing not successful.
+Switching to A*epsilon now.
+
+Advancing to goal distance:   17
+                              14
+                              13
+
+Astar epsilon search space empty!
+Bailing out.
+
+time spent:    0.00 seconds instantiating 22 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 24 facts and 22 actions
+               0.00 seconds creating final representation with 24 relevant facts, 11 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 21 states, to a max depth of 1
+               0.00 seconds total time
+

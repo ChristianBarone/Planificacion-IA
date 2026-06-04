@@ -1,0 +1,68 @@
+
+ff: parsing domain file
+domain 'VIAJE-EXTENSION4' defined
+ ... done.
+ff: parsing problem file
+problem 'CASO1-EXT4-PRIORIZA-INTERES' defined
+ ... done.
+
+
+translating negated cond for predicate TRIP-FINISHED
+translating negated cond for predicate VISITED
+translating negated cond for predicate LODGED
+translating negated cond for predicate TRIP-STARTED
+warning: numeric precondition. turning cost-minimizing relaxed plans OFF.
+
+ff: search configuration is Enforced Hill-Climbing, then A*epsilon with weight 5.
+Metric is ((1.00*[RF0](TOTAL-PRICE)40.00*[RF1](TOTAL-INTEREST)) - () + 0.00)
+COST MINIMIZATION DONE (WITHOUT cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   16 into depth [1]
+                                  11            [1]
+                                   9            [1]
+                                   8            [1]
+                                   7            [1]
+                                   6            [1]
+                                   5            [1][2] --- pruning stopped --- [1][2]
+
+Enforced Hill-climbing not successful.
+Switching to A*epsilon now.
+
+Advancing to goal distance:   16
+                              11
+                               9
+                               8
+                               7
+                               6
+                               5
+                               4
+                               3
+                               2
+                               1
+                               0
+
+ff: found legal plan as follows
+step    0: START-TRIP BERLIN
+        1: CHECK-IN H-BERLIN-BUDGET BERLIN
+        2: SPEND-DAY BERLIN
+        3: FLY BERLIN VIENNA
+        4: CHECK-IN H-VIENNA-BUDGET VIENNA
+        5: SPEND-DAY VIENNA
+        6: SPEND-DAY VIENNA
+        7: FLY VIENNA AMSTERDAM
+        8: CHECK-IN H-AMSTERDAM-BUDGET AMSTERDAM
+        9: SPEND-DAY AMSTERDAM
+       10: FLY AMSTERDAM COPENHAGEN
+       11: CHECK-IN H-COPENHAGEN-BUDGET COPENHAGEN
+       12: SPEND-DAY COPENHAGEN
+       13: FINISH-TRIP COPENHAGEN
+plan cost: 445.000000
+
+time spent:    0.00 seconds instantiating 56 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 44 facts and 56 actions
+               0.00 seconds creating final representation with 44 relevant facts, 21 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 45 states, to a max depth of 2
+               0.00 seconds total time
+
