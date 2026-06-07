@@ -84,7 +84,7 @@
         (lodged ?from)
         (flight ?from ?to)
         (not (visited ?to))
-        (>= (days-in-city ?from) (min-days-city))
+        
       )
     :effect
       (and
