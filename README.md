@@ -6,7 +6,7 @@ Implementació d'un planificador PDDL aplicat al problema de recomanació de via
 
 Versió simplificada del problema de Sistemes Basats en el Coneixement. La idea és obtenir, a partir d'algunes restriccions de l'usuari i de la seva base de dades de vols i hotels, un pla de viatge.
 
-## Nivels
+## Nivells
 
 A continuació s'explicarà el contingut de cada nivel present als directoris:
 
